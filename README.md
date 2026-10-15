@@ -2,7 +2,7 @@
 
 A light and dark color scheme named after the average color of galaxy light.
 
-[Website](https://23maverick23.github.io/cosmic-latte/) · [Releases](https://github.com/23maverick23/cosmic-latte/releases)
+[Website](https://ryancmorrissey.com/cosmic-latte/) · [Releases](https://github.com/23maverick23/cosmic-latte/releases)
 
 ## Downloads
 
