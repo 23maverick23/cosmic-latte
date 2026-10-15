@@ -1,0 +1,48 @@
+{
+  "name": "Cosmic Latte Dark",
+  "globals": {
+    "background": "#1E1D31",
+    "foreground": "#F4ECD9",
+    "caret": "#F4ECD9",
+    "selection": "#38345E",
+    "selection_foreground": "#F4ECD9",
+    "line_highlight": "#272641"
+  },
+  "rules": [
+    {
+      "name": "Comments",
+      "scope": "comment",
+      "foreground": "#9E99B8"
+    },
+    {
+      "name": "Keywords",
+      "scope": "keyword, storage",
+      "foreground": "#A899F7"
+    },
+    {
+      "name": "Strings",
+      "scope": "string",
+      "foreground": "#56CB96"
+    },
+    {
+      "name": "Numbers",
+      "scope": "constant.numeric",
+      "foreground": "#F87986"
+    },
+    {
+      "name": "Functions",
+      "scope": "entity.name.function, support.function",
+      "foreground": "#5DB1FA"
+    },
+    {
+      "name": "Types",
+      "scope": "entity.name.type, support.type",
+      "foreground": "#EFC053"
+    },
+    {
+      "name": "Decorators",
+      "scope": "entity.name.annotation",
+      "foreground": "#F7A0DB"
+    }
+  ]
+}

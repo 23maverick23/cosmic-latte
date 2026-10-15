@@ -1,0 +1,262 @@
+{
+  "name": "Cosmic Latte",
+  "version": "1.0.0",
+  "tagline": "Cosmic Latte, in light and dark",
+  "tint": {
+    "light": 14,
+    "dark": 20
+  },
+  "order": [
+    "base",
+    "surface",
+    "panel",
+    "halo",
+    "border",
+    "text",
+    "subtle",
+    "muted",
+    "supernova",
+    "pink",
+    "solar",
+    "aurora",
+    "ion",
+    "nebula"
+  ],
+  "modes": {
+    "light": {
+      "label": "Light",
+      "tokens": {
+        "base": {
+          "name": "Cosmic Latte",
+          "role": "Editor and page background",
+          "hex": "#FFF8E7"
+        },
+        "surface": {
+          "name": "Starlight",
+          "role": "Cards, inputs",
+          "hex": "#FFFCF2"
+        },
+        "panel": {
+          "name": "Moondust",
+          "role": "Sidebars, panels",
+          "hex": "#F5EAD2"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#EADFEA"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#E3D6BD"
+        },
+        "text": {
+          "name": "Dark Matter",
+          "role": "Primary text",
+          "hex": "#2F3249"
+        },
+        "subtle": {
+          "name": "Umbra",
+          "role": "Secondary text",
+          "hex": "#4F5470"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#5F637E"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#A0233D"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#BF4484"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#B07500"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#0D8344"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#0B73AC"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#5546A8"
+        }
+      }
+    },
+    "dark": {
+      "label": "Dark",
+      "tokens": {
+        "base": {
+          "name": "Deep Space",
+          "role": "Editor and page background",
+          "hex": "#1E1D31"
+        },
+        "surface": {
+          "name": "Starfield",
+          "role": "Cards, inputs",
+          "hex": "#272641"
+        },
+        "panel": {
+          "name": "Void",
+          "role": "Sidebars, panels",
+          "hex": "#171627"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#38345E"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#3B3A59"
+        },
+        "text": {
+          "name": "Cosmic Latte",
+          "role": "Primary text",
+          "hex": "#F4ECD9"
+        },
+        "subtle": {
+          "name": "Moondust",
+          "role": "Secondary text",
+          "hex": "#C8C2D6"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#9E99B8"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#F87986"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#F7A0DB"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#EFC053"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#56CB96"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#5DB1FA"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#A899F7"
+        }
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "terminal": {
+    "light": {
+      "base": "#FFF8E7",
+      "surface": "#FFFCF2",
+      "panel": "#F5EAD2",
+      "halo": "#EADFEA",
+      "border": "#E3D6BD",
+      "text": "#2F3249",
+      "subtle": "#4F5470",
+      "muted": "#5F637E",
+      "supernova": "#A0233D",
+      "pink": "#BF4484",
+      "solar": "#B07500",
+      "aurora": "#0D8344",
+      "ion": "#0B73AC",
+      "nebula": "#5546A8",
+      "supernova_soft": "#F2DACF",
+      "pink_soft": "#F6DFD9",
+      "solar_soft": "#F4E6C7",
+      "aurora_soft": "#DDE8D0",
+      "ion_soft": "#DDE5DF",
+      "nebula_soft": "#E7DFDE",
+      "cyan": "#0C7B78",
+      "ansi": [
+        "#4F5470",
+        "#A0233D",
+        "#0D8344",
+        "#B07500",
+        "#0B73AC",
+        "#BF4484",
+        "#0C7B78",
+        "#C1BDB8",
+        "#5F637E",
+        "#A0233D",
+        "#0D8344",
+        "#B07500",
+        "#0B73AC",
+        "#5546A8",
+        "#0C7B78",
+        "#DAD4CB"
+      ]
+    },
+    "dark": {
+      "base": "#1E1D31",
+      "surface": "#272641",
+      "panel": "#171627",
+      "halo": "#38345E",
+      "border": "#3B3A59",
+      "text": "#F4ECD9",
+      "subtle": "#C8C2D6",
+      "muted": "#9E99B8",
+      "supernova": "#F87986",
+      "pink": "#F7A0DB",
+      "solar": "#EFC053",
+      "aurora": "#56CB96",
+      "ion": "#5DB1FA",
+      "nebula": "#A899F7",
+      "supernova_soft": "#4A2F42",
+      "pink_soft": "#493753",
+      "solar_soft": "#483E38",
+      "aurora_soft": "#294045",
+      "ion_soft": "#2B3B59",
+      "nebula_soft": "#3A3659",
+      "cyan": "#5ABEC8",
+      "ansi": [
+        "#787478",
+        "#F87986",
+        "#56CB96",
+        "#EFC053",
+        "#5DB1FA",
+        "#F7A0DB",
+        "#5ABEC8",
+        "#C8C2D6",
+        "#9A9592",
+        "#F87986",
+        "#56CB96",
+        "#EFC053",
+        "#5DB1FA",
+        "#A899F7",
+        "#5ABEC8",
+        "#F4ECD9"
+      ]
+    }
+  }
+}

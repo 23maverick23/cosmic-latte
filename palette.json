@@ -1,0 +1,222 @@
+{
+  "name": "Cosmic Latte",
+  "version": "1.0.0",
+  "tagline": "Cosmic Latte, in light and dark",
+  "tint": {
+    "light": 14,
+    "dark": 20
+  },
+  "order": [
+    "base",
+    "surface",
+    "panel",
+    "halo",
+    "border",
+    "text",
+    "subtle",
+    "muted",
+    "supernova",
+    "pink",
+    "solar",
+    "aurora",
+    "ion",
+    "nebula"
+  ],
+  "modes": {
+    "light": {
+      "label": "Light",
+      "tokens": {
+        "base": {
+          "name": "Cosmic Latte",
+          "role": "Editor and page background",
+          "hex": "#FFF8E7"
+        },
+        "surface": {
+          "name": "Starlight",
+          "role": "Cards, inputs",
+          "hex": "#FFFCF2"
+        },
+        "panel": {
+          "name": "Moondust",
+          "role": "Sidebars, panels",
+          "hex": "#F5EAD2"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#EADFEA"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#E3D6BD"
+        },
+        "text": {
+          "name": "Dark Matter",
+          "role": "Primary text",
+          "hex": "#2F3249"
+        },
+        "subtle": {
+          "name": "Umbra",
+          "role": "Secondary text",
+          "hex": "#4F5470"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#5F637E"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#A0233D"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#BF4484"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#B07500"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#0D8344"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#0B73AC"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#5546A8"
+        }
+      }
+    },
+    "dark": {
+      "label": "Dark",
+      "tokens": {
+        "base": {
+          "name": "Deep Space",
+          "role": "Editor and page background",
+          "hex": "#1E1D31"
+        },
+        "surface": {
+          "name": "Starfield",
+          "role": "Cards, inputs",
+          "hex": "#272641"
+        },
+        "panel": {
+          "name": "Void",
+          "role": "Sidebars, panels",
+          "hex": "#171627"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#38345E"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#3B3A59"
+        },
+        "text": {
+          "name": "Cosmic Latte",
+          "role": "Primary text",
+          "hex": "#F4ECD9"
+        },
+        "subtle": {
+          "name": "Moondust",
+          "role": "Secondary text",
+          "hex": "#C8C2D6"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#9E99B8"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#F87986"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#F7A0DB"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#EFC053"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#56CB96"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#5DB1FA"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#A899F7"
+        }
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "terminal": {
+    "light": {
+      "cyan": "#0C7B78",
+      "ansi": [
+        "subtle",
+        "supernova",
+        "aurora",
+        "solar",
+        "ion",
+        "pink",
+        "cyan",
+        "#C1BDB8",
+        "muted",
+        "supernova",
+        "aurora",
+        "solar",
+        "ion",
+        "nebula",
+        "cyan",
+        "#DAD4CB"
+      ]
+    },
+    "dark": {
+      "cyan": "#5ABEC8",
+      "ansi": [
+        "#787478",
+        "supernova",
+        "aurora",
+        "solar",
+        "ion",
+        "pink",
+        "cyan",
+        "subtle",
+        "#9A9592",
+        "supernova",
+        "aurora",
+        "solar",
+        "ion",
+        "nebula",
+        "cyan",
+        "text"
+      ]
+    }
+  }
+}

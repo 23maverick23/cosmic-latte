@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "name": "Cosmic Latte",
+  "files": [
+    {
+      "app": "Palette JSON",
+      "mode": "both",
+      "filename": "cosmic-latte.json",
+      "mime": "application/json",
+      "id": "download-palette-json-both",
+      "href": "downloads/cosmic-latte.json"
+    },
+    {
+      "app": "CSS variables",
+      "mode": "both",
+      "filename": "cosmic-latte.css",
+      "mime": "text/css",
+      "id": "download-css-variables-both",
+      "href": "downloads/cosmic-latte.css"
+    },
+    {
+      "app": "Windows Terminal",
+      "mode": "light",
+      "filename": "cosmic-latte-light.windows-terminal.json",
+      "mime": "application/json",
+      "id": "download-windows-terminal-light",
+      "href": "downloads/cosmic-latte-light.windows-terminal.json"
+    },
+    {
+      "app": "Ghostty",
+      "mode": "light",
+      "filename": "Cosmic Latte Light",
+      "mime": "text/plain",
+      "id": "download-ghostty-light",
+      "href": "downloads/Cosmic%20Latte%20Light"
+    },
+    {
+      "app": "iTerm2",
+      "mode": "light",
+      "filename": "cosmic-latte-light.itermcolors",
+      "mime": "application/xml",
+      "id": "download-iterm2-light",
+      "href": "downloads/cosmic-latte-light.itermcolors"
+    },
+    {
+      "app": "Sublime Text",
+      "mode": "light",
+      "filename": "Cosmic Latte Light.sublime-color-scheme",
+      "mime": "application/json",
+      "id": "download-sublime-text-light",
+      "href": "downloads/Cosmic%20Latte%20Light.sublime-color-scheme"
+    },
+    {
+      "app": "VS Code settings",
+      "mode": "light",
+      "filename": "cosmic-latte-light.vscode-settings.json",
+      "mime": "application/json",
+      "id": "download-vs-code-settings-light",
+      "href": "downloads/cosmic-latte-light.vscode-settings.json"
+    },
+    {
+      "app": "Windows Terminal",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.windows-terminal.json",
+      "mime": "application/json",
+      "id": "download-windows-terminal-dark",
+      "href": "downloads/cosmic-latte-dark.windows-terminal.json"
+    },
+    {
+      "app": "Ghostty",
+      "mode": "dark",
+      "filename": "Cosmic Latte Dark",
+      "mime": "text/plain",
+      "id": "download-ghostty-dark",
+      "href": "downloads/Cosmic%20Latte%20Dark"
+    },
+    {
+      "app": "iTerm2",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.itermcolors",
+      "mime": "application/xml",
+      "id": "download-iterm2-dark",
+      "href": "downloads/cosmic-latte-dark.itermcolors"
+    },
+    {
+      "app": "Sublime Text",
+      "mode": "dark",
+      "filename": "Cosmic Latte Dark.sublime-color-scheme",
+      "mime": "application/json",
+      "id": "download-sublime-text-dark",
+      "href": "downloads/Cosmic%20Latte%20Dark.sublime-color-scheme"
+    },
+    {
+      "app": "VS Code settings",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.vscode-settings.json",
+      "mime": "application/json",
+      "id": "download-vs-code-settings-dark",
+      "href": "downloads/cosmic-latte-dark.vscode-settings.json"
+    },
+    {
+      "app": "Slack",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.slack.txt",
+      "mime": "text/plain",
+      "id": "download-slack-dark",
+      "href": "downloads/cosmic-latte-dark.slack.txt"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Cosmic Latte Light",
+  "background": "#FFF8E7",
+  "foreground": "#2F3249",
+  "cursorColor": "#2F3249",
+  "selectionBackground": "#EADFEA",
+  "black": "#4F5470",
+  "red": "#A0233D",
+  "green": "#0D8344",
+  "yellow": "#B07500",
+  "blue": "#0B73AC",
+  "purple": "#BF4484",
+  "cyan": "#0C7B78",
+  "white": "#C1BDB8",
+  "brightBlack": "#5F637E",
+  "brightRed": "#A0233D",
+  "brightGreen": "#0D8344",
+  "brightYellow": "#B07500",
+  "brightBlue": "#0B73AC",
+  "brightPurple": "#5546A8",
+  "brightCyan": "#0C7B78",
+  "brightWhite": "#DAD4CB"
+}

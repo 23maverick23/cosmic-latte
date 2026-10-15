@@ -1,0 +1,23 @@
+{
+  "name": "Cosmic Latte Dark",
+  "background": "#1E1D31",
+  "foreground": "#F4ECD9",
+  "cursorColor": "#F4ECD9",
+  "selectionBackground": "#38345E",
+  "black": "#787478",
+  "red": "#F87986",
+  "green": "#56CB96",
+  "yellow": "#EFC053",
+  "blue": "#5DB1FA",
+  "purple": "#F7A0DB",
+  "cyan": "#5ABEC8",
+  "white": "#C8C2D6",
+  "brightBlack": "#9A9592",
+  "brightRed": "#F87986",
+  "brightGreen": "#56CB96",
+  "brightYellow": "#EFC053",
+  "brightBlue": "#5DB1FA",
+  "brightPurple": "#A899F7",
+  "brightCyan": "#5ABEC8",
+  "brightWhite": "#F4ECD9"
+}

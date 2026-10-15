@@ -1,0 +1,22 @@
+# Cosmic Latte Light
+background = #FFF8E7
+foreground = #2F3249
+cursor-color = #2F3249
+selection-background = #EADFEA
+selection-foreground = #2F3249
+palette = 0=#4F5470
+palette = 1=#A0233D
+palette = 2=#0D8344
+palette = 3=#B07500
+palette = 4=#0B73AC
+palette = 5=#BF4484
+palette = 6=#0C7B78
+palette = 7=#C1BDB8
+palette = 8=#5F637E
+palette = 9=#A0233D
+palette = 10=#0D8344
+palette = 11=#B07500
+palette = 12=#0B73AC
+palette = 13=#5546A8
+palette = 14=#0C7B78
+palette = 15=#DAD4CB

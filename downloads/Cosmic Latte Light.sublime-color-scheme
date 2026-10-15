@@ -1,0 +1,48 @@
+{
+  "name": "Cosmic Latte Light",
+  "globals": {
+    "background": "#FFF8E7",
+    "foreground": "#2F3249",
+    "caret": "#2F3249",
+    "selection": "#EADFEA",
+    "selection_foreground": "#2F3249",
+    "line_highlight": "#FFFCF2"
+  },
+  "rules": [
+    {
+      "name": "Comments",
+      "scope": "comment",
+      "foreground": "#5F637E"
+    },
+    {
+      "name": "Keywords",
+      "scope": "keyword, storage",
+      "foreground": "#5546A8"
+    },
+    {
+      "name": "Strings",
+      "scope": "string",
+      "foreground": "#0D8344"
+    },
+    {
+      "name": "Numbers",
+      "scope": "constant.numeric",
+      "foreground": "#A0233D"
+    },
+    {
+      "name": "Functions",
+      "scope": "entity.name.function, support.function",
+      "foreground": "#0B73AC"
+    },
+    {
+      "name": "Types",
+      "scope": "entity.name.type, support.type",
+      "foreground": "#B07500"
+    },
+    {
+      "name": "Decorators",
+      "scope": "entity.name.annotation",
+      "foreground": "#BF4484"
+    }
+  ]
+}

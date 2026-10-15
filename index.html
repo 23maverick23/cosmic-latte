@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cosmic Latte: Cosmic Latte in light and dark. Explore color values, terminal colors, and contrast ratios.">
+<title>Cosmic Latte Palette</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg:#FFF8E7; --surface:#FFFCF2; --panel:#F5EAD2; --halo:#EADFEA; --line:#E3D6BD; --fg:#2F3249; --sub:#4F5470; --mut:#5F637E; --acc:#5546A8; --onacc:#FFF8E7;
+  --display:'Bricolage Grotesque','Avenir Next',system-ui,sans-serif;
+  --body:'DM Sans','Avenir Next',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#1E1D31; --surface:#272641; --panel:#171627; --halo:#38345E; --line:#3B3A59; --fg:#F4ECD9; --sub:#C8C2D6; --mut:#9E99B8; --acc:#A899F7; --onacc:#1E1D31;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:auto; scroll-padding-top:28px; }
+body { margin:0; background:var(--bg); color:var(--fg); font:400 15px/1.6 var(--body); }
+a { color:inherit; text-decoration:none; }
+button { font:inherit; }
+button,a { -webkit-tap-highlight-color:transparent; }
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible { outline:2px solid var(--acc); outline-offset:4px; }
+button { cursor:pointer; }
+.shell { width:min(1160px,calc(100% - 96px)); margin-inline:auto; }
+.site-header { display:flex; justify-content:space-between; gap:24px; align-items:center; padding:30px 0 26px; }
+.brand { font:700 21px/1.2 var(--display); letter-spacing:-.6px; }
+nav { display:flex; gap:30px; color:var(--sub); font-size:13px; font-weight:500; }
+nav a { padding:8px 0; }
+nav a:hover { color:var(--acc); }
+.spectrum { display:flex; height:5px; border-radius:3px; overflow:hidden; }
+.spectrum span { flex:1; }
+main { display:flex; flex-direction:column; gap:64px; padding:64px 0; }
+h1,h2,h3,p { margin:0; }
+h1,h2,h3 { font-family:var(--display); }
+h1 { font-size:clamp(36px,4.5vw,58px); line-height:1.1; font-weight:700; letter-spacing:-2px; text-wrap:balance; }
+h2 { font-size:27px; line-height:1.2; letter-spacing:-.7px; }
+h3 { font-size:18px; line-height:1.4; letter-spacing:-.3px; }
+.top { display:flex; gap:32px; align-items:center; justify-content:space-between; }
+.hero-copy { max-width:810px; }
+.lede { color:var(--sub); font-size:16px; margin-top:18px; max-width:64ch; }
+.seg { flex:none; display:flex; gap:4px; border:1px solid var(--line); border-radius:10px; padding:4px; background:var(--surface); }
+.seg button { border:0; background:transparent; color:var(--sub); padding:10px 20px; border-radius:7px; font-size:13px; font-weight:700; min-height:42px; }
+.seg button[aria-pressed="true"] { background:var(--acc); color:var(--onacc); }
+.sec { display:flex; flex-direction:column; gap:22px; min-width:0; }
+.section-head { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+.section-head p { color:var(--sub); margin-top:8px; max-width:76ch; font-size:14px; }
+.section-note { color:var(--mut); font:11px/1.5 var(--mono); flex:none; padding-bottom:2px; }
+.tablewrap { overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+table { border-collapse:collapse; width:100%; text-align:left; font-variant-numeric:tabular-nums; }
+caption { text-align:left; }
+th,td { padding:14px 18px; border-bottom:1px solid var(--line); white-space:nowrap; }
+thead th { background:var(--bg); color:var(--mut); font:500 11px/1.5 var(--mono); letter-spacing:.02em; padding-block:13px; }
+tbody th { font-weight:600; font-size:13px; text-align:left; }
+tbody td { font-size:13px; color:var(--sub); }
+tr:last-child td,tr:last-child th { border-bottom:0; }
+.palette-table th:first-child { width:25%; }
+.palette-table .role { font-size:12px; }
+.palette-table td:has(.copy) { padding:6px 12px; }
+.preview { display:inline-block; width:38px; height:30px; border:1px solid var(--line); border-radius:6px; vertical-align:middle; margin-right:14px; }
+.copy { display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; min-height:36px; border:0; border-radius:6px; background:transparent; color:var(--fg); padding:6px; font:400 11px/1.6 var(--mono); text-align:left; white-space:nowrap; }
+.copy:hover { background:var(--halo); }
+.copy i { font:400 9px/1 var(--mono); text-transform:uppercase; color:var(--mut); font-style:normal; }
+.palette-table .copy i { display:none; }
+.copy.done i { color:var(--acc); }
+.copy.done { background:var(--halo); }
+.grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; }
+.sw { border:1px solid var(--line); background:var(--surface); border-radius:10px; overflow:hidden; min-width:0; }
+.chip { height:78px; }
+.meta { padding:14px 13px 6px; }
+.meta b { display:block; font:700 15px/1.3 var(--display); }
+.meta span { display:block; color:var(--sub); font-size:11px; margin-top:5px; min-height:36px; line-height:1.5; }
+.vals { padding:0 7px 10px; }
+.vals .copy { font-size:10px; gap:3px; min-height:30px; }
+.vals .copy i { font-size:8px; }
+.term { display:grid; grid-template-columns:1.25fr 1fr; gap:32px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; }
+.editor { min-width:0; background:var(--terminal-bg); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.editor-bar { display:flex; justify-content:space-between; gap:16px; padding:12px 18px; border-bottom:1px solid var(--line); color:var(--mut); font:11px/1.5 var(--mono); }
+.code { padding:22px 18px; font:400 12px/1.9 var(--mono); overflow-x:auto; white-space:pre; color:var(--fg); }
+.code .c { color:var(--mut); font-style:italic; }.code .k { color:var(--acc); }.code .s { color:var(--g); }.code .n { color:var(--r); }.code .f { color:var(--b); }.code .t { color:var(--y); }.code .p { color:var(--p); }
+.ansi-panel { display:flex; flex-direction:column; justify-content:center; gap:20px; min-width:0; padding:6px 8px; }
+.ansi-panel h3 { font:600 13px/1.4 var(--body); }
+.ansi-panel p { color:var(--mut); font-size:12px; margin-top:6px; }
+.ansi { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:16px 7px; }
+.ansi-slot { text-align:center; min-width:0; }
+.ansi-slot span { display:block; height:36px; border-radius:5px; border:1px solid var(--line); }
+.ansi-slot small { display:block; color:var(--mut); margin-top:5px; font:10px/1.5 var(--mono); }
+.contrast-table td:not(:first-child) { font:12px/1.8 var(--mono); }
+.dot { display:inline-block; width:10px; height:10px; border-radius:50%; border:1px solid var(--line); margin-right:10px; }
+.note { font:10px/1.6 var(--mono); color:var(--mut); margin-left:8px; }
+.low { color:var(--mut); }
+.contrast-note { font-size:12px; color:var(--sub); margin-top:-7px; }
+.install { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.card { min-width:0; padding:24px; background:var(--surface); border:1px solid var(--line); border-radius:12px; display:flex; flex-direction:column; gap:12px; }
+.card p { color:var(--sub); font-size:13px; max-width:60ch; }
+.card pre { margin:0; padding:16px; overflow-x:auto; background:var(--panel); border-radius:7px; font:11px/1.8 var(--mono); flex:1; }
+.card>.copy { width:max-content; min-height:38px; padding-inline:12px; gap:24px; }
+footer { display:flex; gap:24px; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding:26px 0 38px; color:var(--mut); font-size:12px; }
+footer .brand { font-size:16px; color:var(--fg); }
+#status { position:fixed; bottom:24px; left:50%; transform:translate(-50%,8px); padding:12px 20px; background:var(--fg); color:var(--bg); border-radius:8px; font-size:13px; opacity:0; pointer-events:none; transition:opacity .15s,transform .15s; max-width:calc(100% - 32px); text-align:center; z-index:10; }
+#status.visible { opacity:1; transform:translate(-50%,0); }
+.skip-link { position:fixed; top:-100px; left:16px; padding:10px 16px; background:var(--surface); border:1px solid var(--acc); border-radius:6px; z-index:20; }
+.skip-link:focus { top:12px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@media(min-width:1400px) { .shell { width:min(1240px,calc(100% - 128px)); } }
+@media(max-width:1050px) { .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.meta span { min-height:0; }.vals .copy { font-size:11px; }.chip { height:85px; }.term { grid-template-columns:1fr; }.ansi-panel { padding:8px; }.ansi-slot span { height:44px; } }
+@media(max-width:700px) {
+ .shell { width:calc(100% - 36px); }.site-header { padding:22px 0 20px; align-items:flex-start; gap:12px; flex-direction:column; }
+ nav { gap:24px; font-size:12px; width:100%; justify-content:space-between; } nav a { min-height:40px; display:flex; align-items:center; }
+ main { padding:36px 0 44px; gap:44px; }.top { flex-direction:column; align-items:flex-start; gap:24px; }h1 { font-size:40px; letter-spacing:-1.4px; }.lede { font-size:14px; margin-top:14px; }h2 { font-size:24px; }
+ .section-head { display:block; }.section-note { display:block; margin-top:10px; }.section-note::after { content:" · Scroll for all formats"; }.section-head p { font-size:13px; }
+ .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }.chip { height:70px; }.meta { padding:12px 11px 6px; }.meta b { font-size:15px; }.meta span { min-height:33px; }.vals .copy { min-height:44px; font-size:10px; }
+ .copy { min-height:44px; }.tablewrap th,.tablewrap td { padding:12px; }.palette-table td:has(.copy) { padding:4px 8px; }.palette-table .role { display:none; }.palette-table th.role { display:none; }.preview { width:24px; height:26px; margin-right:8px; }.palette-table tbody th { font-size:12px; }.palette-table .copy { font-size:10px; }.palette-table th:first-child { min-width:156px; }
+ .term { padding:12px; gap:20px; }.code { font-size:10px; padding:16px 12px; }.editor-bar { padding:10px 12px; }.ansi-panel { padding:4px; }.ansi { gap:12px 5px; }.ansi-slot span { height:30px; }
+ .install { grid-template-columns:1fr; }.card { padding:20px; }.card pre { font-size:10px; }.section-head { gap:12px; }.note { display:none; }footer { align-items:flex-start; }footer p { max-width:150px; text-align:right; font-size:11px; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }#status { transition:none; } }
+
+
+/* Native icon controls and a short introduction, within the existing visual system. */
+.seg button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:44px; }
+.seg svg { flex:none; }
+.preamble { max-width:82ch; margin-top:-34px; color:var(--sub); font-size:15px; line-height:1.8; display:grid; gap:12px; }
+.preamble code { font:12px var(--mono); }
+.preamble a,details a { text-decoration:underline; text-underline-offset:3px; color:var(--acc); }
+.download-card { gap:14px; }
+.download-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:8px; }
+.download { display:inline-flex; gap:24px; align-items:center; justify-content:space-between; min-height:44px; padding:10px 15px; font:600 12px/1.5 var(--body); border:1px solid var(--line); border-radius:7px; color:var(--acc); }
+.download:hover { background:var(--halo); }
+.download-note { color:var(--mut); font-size:12px; max-width:95ch; }
+details { border-top:1px solid var(--line); padding-top:20px; color:var(--sub); font-size:13px; }
+summary { cursor:pointer; color:var(--fg); font-weight:600; min-height:44px; }
+details p { max-width:85ch; margin-bottom:12px; }
+@media(max-width:700px) { .preamble { margin-top:-18px; font-size:14px; }.seg button { padding:10px 16px; } }
+
+/* The origin story stays readable while the longer method is optional. */
+.preamble h2 { color:var(--fg); font-size:24px; margin-bottom:2px; }
+.preamble strong { color:var(--fg); font-weight:600; }
+.preamble .science-story { border-block:1px solid var(--line); padding:10px 0; margin:5px 0; font-size:inherit; }
+.science-story summary { display:list-item; min-height:44px; align-content:center; }
+.story-copy { display:grid; gap:14px; padding:12px 0; }
+.story-copy p { margin:0; }
+.preamble .design-credit { font-size:12px; color:var(--mut); }
+.slack-string { display:block; white-space:normal; overflow-wrap:anywhere; font:11px/1.8 var(--mono); }
+#slack-copy { display:inline-flex; }
+#slack-copy .copy { border:1px solid var(--line); padding:10px 15px; min-height:44px; }
+.hero-copy h1 { display:flex; align-items:center; gap:.25em; }
+.coffee-mark { width:.65em; height:.65em; flex:none; }
+#license a { color:var(--acc); text-decoration:underline; text-underline-offset:3px; }
+@media(max-width:360px) { .hero-copy h1 { font-size:36px; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to palette</a>
+<div class="shell">
+  <header class="site-header">
+    <a class="brand" href="#main">Cosmic Latte</a>
+    <nav aria-label="Sections"><a href="#palette">Palette</a><a href="#preview">Preview</a><a href="#contrast">Contrast</a><a href="#downloads">Downloads</a></nav>
+  </header>
+  <div class="spectrum" id="spectrum" aria-hidden="true"></div>
+  <main id="main">
+    <div class="top">
+      <div class="hero-copy"><h1>Cosmic Latte <svg class="coffee-mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13h17v9a6 6 0 0 1-6 6h-5a6 6 0 0 1-6-6Z"/><path d="M23 14h2a4 4 0 0 1 0 8h-2M4 29h22M11 3c-3 3 3 4 0 7M18 3c-3 3 3 4 0 7"/></svg></h1><p class="lede">A light and dark color scheme.</p></div>
+      <div class="seg" role="group" aria-label="Flavor"><button id="bl" aria-pressed="true" type="button" aria-label="Light theme" title="Light theme"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg><span>Light</span></button><button id="bd" aria-pressed="false" type="button" aria-label="Dark theme" title="Dark theme"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 13.5A9 9 0 0 1 10.5 3.2a9 9 0 1 0 10.3 10.3Z"/></svg><span>Dark</span></button></div>
+    </div>
+<section class="preamble" id="origin" aria-labelledby="origin-title">
+  <h2 id="origin-title">The color of the universe</h2>
+  <p>In 2002, Johns Hopkins astronomers <strong>Karl Glazebrook and Ivan Baldry</strong> described the combined visible light of galaxies as a pale, almost-white beige. After inviting name suggestions, they chose <strong>Cosmic Latte</strong>. <a href="https://www.astro.ljmu.ac.uk/~ikb/Cosmic-Spectrum.html">Read the astronomers’ account</a>.</p>
+  <p>The team used the <strong>2dF Galaxy Redshift Survey</strong>, a survey of roughly 200,000 galaxies. Its instrument on the Anglo-Australian Telescope in Australia could collect light from up to 400 objects at once, splitting it into spectra: records of how much light arrives at each wavelength. <a href="https://arxiv.org/abs/astro-ph/0106498">About the survey</a>.</p>
+  <details class="science-story">
+    <summary>How do you turn all that starlight into one color?</summary>
+    <div class="story-copy">
+      <p><strong>Combining the light.</strong> The researchers corrected the spectra for redshift, the stretching of light toward red as the universe expands. They combined them into a luminosity-weighted “cosmic spectrum,” so galaxies contributed in proportion to the light they emitted. They then used standard models of human color vision to work out how that blend would look. <a href="https://www.astro.ljmu.ac.uk/~ikb/Cosmic_Spectrum_files/color-universe-QandA.html">Baldry explains the method</a>.</p>
+      <p><strong>From turquoise to beige.</strong> The first announcement, in January 2002, described a pale turquoise. Color scientist Mark Fairchild and colleagues helped trace that result to an incorrect white-point setting in the conversion software. White point describes what a viewer treats as white under a given light. With that setting corrected for the chosen viewing conditions, the result became beige. <a href="https://pages.jh.edu/gazette/2002/11mar02/11color.html">The March 2002 correction</a>.</p>
+      <p><strong>Studying the history of stars.</strong> The researchers compared features in the spectrum with models of stellar populations to study when stars formed. A population with more hot, young stars gives a different spectrum from one with more cool, older stars. Calculating a single color was a side project. <a href="https://arxiv.org/abs/astro-ph/0110676">Read the research paper</a>.</p>
+      <p>This average describes visible light escaping from galaxies, with its brightness raised for display. It does not describe how bright the night sky looks. The screen color also depends on assumptions about vision, lighting, and the display; a hex code is a representation, not a universal physical constant.</p>
+    </div>
+  </details>
+  <p class="design-credit">Page design inspired by <a href="https://rosepinetheme.com/palette/">Rosé Pine</a> and <a href="https://catppuccin.com/">Catppuccin</a>.</p>
+</section>
+    <section class="sec" id="palette" aria-labelledby="surfaces-title">
+      <header class="section-head"><div><h2 id="surfaces-title">Surfaces and text</h2><p id="s1"></p></div><span class="section-note">Click any value to copy</span></header>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="Surface color values, scroll for all formats"><table class="palette-table"><caption class="sr-only">Surface and text color values</caption><thead><tr><th scope="col">Name</th><th scope="col" class="role">Role</th><th scope="col">HEX</th><th scope="col">RGB</th><th scope="col">HSL</th></tr></thead><tbody id="g1"></tbody></table></div>
+    </section>
+    <section class="sec" aria-labelledby="accents-title"><header class="section-head"><div><h2 id="accents-title">Accents</h2><p>Six accent colors for text and interface elements.</p></div></header><div class="grid" id="g2"></div></section>
+    <section class="sec" id="preview" aria-labelledby="terminal-title">
+      <header class="section-head"><div><h2 id="terminal-title">In a terminal</h2><p>The 16 ANSI slots used by the Ghostty themes, with a code sample in the Sublime scheme.</p></div></header>
+      <div class="term" id="term"><div class="editor"><div class="editor-bar"><span>launch.py</span><span>Python</span></div><div class="code" id="code" tabindex="0" role="region" aria-label="Syntax highlighting preview"></div></div><div class="ansi-panel"><div><h3>ANSI colors</h3><p>Standard 0–7 · Bright 8–15</p></div><div class="ansi" id="ansi"></div></div></div>
+    </section>
+    <section class="sec" id="contrast" aria-labelledby="contrast-title"><header class="section-head"><div><h2 id="contrast-title">Contrast</h2><p>WCAG 2 ratios on the base, panel, and halo colors. AA needs 4.5:1 for body text, or 3:1 for large text and icons.</p></div></header>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="Contrast ratios, scroll for all backgrounds"><table class="contrast-table"><caption class="sr-only">Text contrast ratios for the current flavor</caption><thead><tr><th scope="col">Color</th><th scope="col">On base</th><th scope="col">On panel</th><th scope="col">On halo</th></tr></thead><tbody id="ct"></tbody></table></div>
+      <p class="contrast-note">Solar Flare is below 4.5:1 for small text in Light. Use it for types and warnings, not long passages.</p>
+    </section>
+    <section class="sec" id="downloads" aria-labelledby="downloads-title"><header class="section-head"><div><h2 id="downloads-title">Downloads</h2><p>Download the files below and follow the setup steps for your app.</p></div></header><div class="download-links"><a class="download" href="dist/cosmic-latte-1.0.0.zip" download>Download all (ZIP)</a><a class="download" href="dist/cosmic-latte-standalone.html" download>Download standalone HTML</a></div><div class="install"><article class="card download-card"><h3>Palette JSON</h3><p>Color names, roles, hex values, and ANSI colors for both modes.</p><div class="download-links"><a class="download" id="download-palette-json-both" href="downloads/cosmic-latte.json" download="cosmic-latte.json" data-format="application/json" data-mode="both" aria-label="Download Palette JSON both">Download JSON<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>CSS variables</h3><p>Use --ct-text and --ct-base in your stylesheet. Follows the system setting, or set data-theme on the root.</p><div class="download-links"><a class="download" id="download-css-variables-both" href="downloads/cosmic-latte.css" download="cosmic-latte.css" data-format="text/css" data-mode="both" aria-label="Download CSS variables both">Download CSS<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>VS Code settings</h3><p>Merge one file into User settings.json. These settings override your current colors. Use the other file to change modes.</p><div class="download-links"><a class="download" id="download-vs-code-settings-light" href="downloads/cosmic-latte-light.vscode-settings.json" download="cosmic-latte-light.vscode-settings.json" data-format="application/json" data-mode="light" aria-label="Download VS Code settings light">Light<span aria-hidden="true">↓</span></a><a class="download" id="download-vs-code-settings-dark" href="downloads/cosmic-latte-dark.vscode-settings.json" download="cosmic-latte-dark.vscode-settings.json" data-format="application/json" data-mode="dark" aria-label="Download VS Code settings dark">Dark<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>Windows Terminal</h3><p>Merge a scheme into the schemes array in settings.json, then select it for a profile. Works with Command Prompt, PowerShell, and WSL inside Windows Terminal.</p><div class="download-links"><a class="download" id="download-windows-terminal-light" href="downloads/cosmic-latte-light.windows-terminal.json" download="cosmic-latte-light.windows-terminal.json" data-format="application/json" data-mode="light" aria-label="Download Windows Terminal light">Light<span aria-hidden="true">↓</span></a><a class="download" id="download-windows-terminal-dark" href="downloads/cosmic-latte-dark.windows-terminal.json" download="cosmic-latte-dark.windows-terminal.json" data-format="application/json" data-mode="dark" aria-label="Download Windows Terminal dark">Dark<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>Ghostty</h3><p>Save the files in ~/.config/ghostty/themes. Set theme = light:Cosmic Latte Light,dark:Cosmic Latte Dark in your config.</p><div class="download-links"><a class="download" id="download-ghostty-light" href="downloads/Cosmic%20Latte%20Light" download="Cosmic Latte Light" data-format="text/plain" data-mode="light" aria-label="Download Ghostty light">Light<span aria-hidden="true">↓</span></a><a class="download" id="download-ghostty-dark" href="downloads/Cosmic%20Latte%20Dark" download="Cosmic Latte Dark" data-format="text/plain" data-mode="dark" aria-label="Download Ghostty dark">Dark<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>iTerm2</h3><p>Import under Settings → Profiles → Colors → Color Presets → Import, then select the preset.</p><div class="download-links"><a class="download" id="download-iterm2-light" href="downloads/cosmic-latte-light.itermcolors" download="cosmic-latte-light.itermcolors" data-format="application/xml" data-mode="light" aria-label="Download iTerm2 light">Light<span aria-hidden="true">↓</span></a><a class="download" id="download-iterm2-dark" href="downloads/cosmic-latte-dark.itermcolors" download="cosmic-latte-dark.itermcolors" data-format="application/xml" data-mode="dark" aria-label="Download iTerm2 dark">Dark<span aria-hidden="true">↓</span></a></div></article><article class="card download-card"><h3>Sublime Text</h3><p>Save in Packages/User, then choose Cosmic Latte Light or Dark under Select Color Scheme.</p><div class="download-links"><a class="download" id="download-sublime-text-light" href="downloads/Cosmic%20Latte%20Light.sublime-color-scheme" download="Cosmic Latte Light.sublime-color-scheme" data-format="application/json" data-mode="light" aria-label="Download Sublime Text light">Light<span aria-hidden="true">↓</span></a><a class="download" id="download-sublime-text-dark" href="downloads/Cosmic%20Latte%20Dark.sublime-color-scheme" download="Cosmic Latte Dark.sublime-color-scheme" data-format="application/json" data-mode="dark" aria-label="Download Sublime Text dark">Dark<span aria-hidden="true">↓</span></a></div></article><article class="card download-card" id="slack"><h3>Slack</h3><p>Dark mode import string. In Slack, open Custom theme → Import theme → Paste your legacy theme colors, paste the string, then Apply. Use Slack’s dark mode.</p><p class="download-note">Slack adapts imported colors, so this is an approximation. The final appearance has not been checked in Slack. Light is not included.</p><div class="download-links"><a class="download" id="download-slack-dark" href="downloads/cosmic-latte-dark.slack.txt" download="cosmic-latte-dark.slack.txt" data-format="text/plain" data-mode="dark" aria-label="Download Slack dark">Dark<span aria-hidden="true">↓</span></a><span id="slack-copy"></span></div><details><summary>View import string</summary><code class="slack-string">#1E1D31,#171627,#A899F7,#1E1D31,#38345E,#F4ECD9,#56CB96,#F87986,#171627,#F4ECD9</code></details></article></div><p class="download-note" id="license">This color scheme, its theme files, and this page are dedicated to the public domain under <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>. Use, change, and share them for any purpose, including commercial use. No credit required.</p></section>
+<section class="sec" id="using-it" aria-labelledby="using-title"><header class="section-head"><div><h2 id="using-title">Using the palette</h2><p>Use the app files above, or copy these three colors into an app that accepts custom colors.</p></div></header><div class="install" id="inst"></div><details id="palette-source"><summary>Palette data for scripts and agents</summary><p>The readable JSON in <code>script#palette-data</code> contains both modes, color roles, and ANSI slots. Download links have stable IDs, filenames, format labels, and mode labels. JavaScript is not needed to extract this data or save the files.</p><a href="#download-palette-json-both">Go to palette JSON download</a></details></section>
+  </main>
+  <footer><a class="brand" href="#main">Cosmic Latte</a><p>Palette v1.0.0 · Light &amp; Dark</p></footer>
+</div>
+<div id="status" role="status" aria-live="polite" aria-atomic="true"></div>
+<noscript><p class="shell">Download links work without JavaScript. Enable JavaScript for the visual palette and theme controls; both modes are included in the palette JSON.</p></noscript>
+<script type="application/json" id="palette-data">
+{
+  "name": "Cosmic Latte",
+  "version": "1.0.0",
+  "tagline": "Cosmic Latte, in light and dark",
+  "tint": {
+    "light": 14,
+    "dark": 20
+  },
+  "order": [
+    "base",
+    "surface",
+    "panel",
+    "halo",
+    "border",
+    "text",
+    "subtle",
+    "muted",
+    "supernova",
+    "pink",
+    "solar",
+    "aurora",
+    "ion",
+    "nebula"
+  ],
+  "modes": {
+    "light": {
+      "label": "Light",
+      "tokens": {
+        "base": {
+          "name": "Cosmic Latte",
+          "role": "Editor and page background",
+          "hex": "#FFF8E7"
+        },
+        "surface": {
+          "name": "Starlight",
+          "role": "Cards, inputs",
+          "hex": "#FFFCF2"
+        },
+        "panel": {
+          "name": "Moondust",
+          "role": "Sidebars, panels",
+          "hex": "#F5EAD2"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#EADFEA"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#E3D6BD"
+        },
+        "text": {
+          "name": "Dark Matter",
+          "role": "Primary text",
+          "hex": "#2F3249"
+        },
+        "subtle": {
+          "name": "Umbra",
+          "role": "Secondary text",
+          "hex": "#4F5470"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#5F637E"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#A0233D"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#BF4484"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#B07500"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#0D8344"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#0B73AC"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#5546A8"
+        }
+      }
+    },
+    "dark": {
+      "label": "Dark",
+      "tokens": {
+        "base": {
+          "name": "Deep Space",
+          "role": "Editor and page background",
+          "hex": "#1E1D31"
+        },
+        "surface": {
+          "name": "Starfield",
+          "role": "Cards, inputs",
+          "hex": "#272641"
+        },
+        "panel": {
+          "name": "Void",
+          "role": "Sidebars, panels",
+          "hex": "#171627"
+        },
+        "halo": {
+          "name": "Halo",
+          "role": "Selection, hover",
+          "hex": "#38345E"
+        },
+        "border": {
+          "name": "Horizon",
+          "role": "Borders, dividers",
+          "hex": "#3B3A59"
+        },
+        "text": {
+          "name": "Cosmic Latte",
+          "role": "Primary text",
+          "hex": "#F4ECD9"
+        },
+        "subtle": {
+          "name": "Moondust",
+          "role": "Secondary text",
+          "hex": "#C8C2D6"
+        },
+        "muted": {
+          "name": "Penumbra",
+          "role": "Comments, captions",
+          "hex": "#9E99B8"
+        },
+        "supernova": {
+          "name": "Supernova",
+          "role": "Errors, numbers",
+          "hex": "#F87986"
+        },
+        "pink": {
+          "name": "Pulsar",
+          "role": "Decorators, highlights",
+          "hex": "#F7A0DB"
+        },
+        "solar": {
+          "name": "Solar Flare",
+          "role": "Warnings, types",
+          "hex": "#EFC053"
+        },
+        "aurora": {
+          "name": "Aurora",
+          "role": "Success, strings",
+          "hex": "#56CB96"
+        },
+        "ion": {
+          "name": "Ion Tail",
+          "role": "Info, functions",
+          "hex": "#5DB1FA"
+        },
+        "nebula": {
+          "name": "Nebula",
+          "role": "Primary actions, keywords",
+          "hex": "#A899F7"
+        }
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "terminal": {
+    "light": {
+      "base": "#FFF8E7",
+      "surface": "#FFFCF2",
+      "panel": "#F5EAD2",
+      "halo": "#EADFEA",
+      "border": "#E3D6BD",
+      "text": "#2F3249",
+      "subtle": "#4F5470",
+      "muted": "#5F637E",
+      "supernova": "#A0233D",
+      "pink": "#BF4484",
+      "solar": "#B07500",
+      "aurora": "#0D8344",
+      "ion": "#0B73AC",
+      "nebula": "#5546A8",
+      "supernova_soft": "#F2DACF",
+      "pink_soft": "#F6DFD9",
+      "solar_soft": "#F4E6C7",
+      "aurora_soft": "#DDE8D0",
+      "ion_soft": "#DDE5DF",
+      "nebula_soft": "#E7DFDE",
+      "cyan": "#0C7B78",
+      "ansi": [
+        "#4F5470",
+        "#A0233D",
+        "#0D8344",
+        "#B07500",
+        "#0B73AC",
+        "#BF4484",
+        "#0C7B78",
+        "#C1BDB8",
+        "#5F637E",
+        "#A0233D",
+        "#0D8344",
+        "#B07500",
+        "#0B73AC",
+        "#5546A8",
+        "#0C7B78",
+        "#DAD4CB"
+      ]
+    },
+    "dark": {
+      "base": "#1E1D31",
+      "surface": "#272641",
+      "panel": "#171627",
+      "halo": "#38345E",
+      "border": "#3B3A59",
+      "text": "#F4ECD9",
+      "subtle": "#C8C2D6",
+      "muted": "#9E99B8",
+      "supernova": "#F87986",
+      "pink": "#F7A0DB",
+      "solar": "#EFC053",
+      "aurora": "#56CB96",
+      "ion": "#5DB1FA",
+      "nebula": "#A899F7",
+      "supernova_soft": "#4A2F42",
+      "pink_soft": "#493753",
+      "solar_soft": "#483E38",
+      "aurora_soft": "#294045",
+      "ion_soft": "#2B3B59",
+      "nebula_soft": "#3A3659",
+      "cyan": "#5ABEC8",
+      "ansi": [
+        "#787478",
+        "#F87986",
+        "#56CB96",
+        "#EFC053",
+        "#5DB1FA",
+        "#F7A0DB",
+        "#5ABEC8",
+        "#C8C2D6",
+        "#9A9592",
+        "#F87986",
+        "#56CB96",
+        "#EFC053",
+        "#5DB1FA",
+        "#A899F7",
+        "#5ABEC8",
+        "#F4ECD9"
+      ]
+    }
+  }
+}
+</script>
+<script type="application/json" id="download-manifest">
+{
+  "schemaVersion": 1,
+  "name": "Cosmic Latte",
+  "files": [
+    {
+      "app": "Palette JSON",
+      "mode": "both",
+      "filename": "cosmic-latte.json",
+      "mime": "application/json",
+      "id": "download-palette-json-both",
+      "href": "downloads/cosmic-latte.json"
+    },
+    {
+      "app": "CSS variables",
+      "mode": "both",
+      "filename": "cosmic-latte.css",
+      "mime": "text/css",
+      "id": "download-css-variables-both",
+      "href": "downloads/cosmic-latte.css"
+    },
+    {
+      "app": "Windows Terminal",
+      "mode": "light",
+      "filename": "cosmic-latte-light.windows-terminal.json",
+      "mime": "application/json",
+      "id": "download-windows-terminal-light",
+      "href": "downloads/cosmic-latte-light.windows-terminal.json"
+    },
+    {
+      "app": "Ghostty",
+      "mode": "light",
+      "filename": "Cosmic Latte Light",
+      "mime": "text/plain",
+      "id": "download-ghostty-light",
+      "href": "downloads/Cosmic%20Latte%20Light"
+    },
+    {
+      "app": "iTerm2",
+      "mode": "light",
+      "filename": "cosmic-latte-light.itermcolors",
+      "mime": "application/xml",
+      "id": "download-iterm2-light",
+      "href": "downloads/cosmic-latte-light.itermcolors"
+    },
+    {
+      "app": "Sublime Text",
+      "mode": "light",
+      "filename": "Cosmic Latte Light.sublime-color-scheme",
+      "mime": "application/json",
+      "id": "download-sublime-text-light",
+      "href": "downloads/Cosmic%20Latte%20Light.sublime-color-scheme"
+    },
+    {
+      "app": "VS Code settings",
+      "mode": "light",
+      "filename": "cosmic-latte-light.vscode-settings.json",
+      "mime": "application/json",
+      "id": "download-vs-code-settings-light",
+      "href": "downloads/cosmic-latte-light.vscode-settings.json"
+    },
+    {
+      "app": "Windows Terminal",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.windows-terminal.json",
+      "mime": "application/json",
+      "id": "download-windows-terminal-dark",
+      "href": "downloads/cosmic-latte-dark.windows-terminal.json"
+    },
+    {
+      "app": "Ghostty",
+      "mode": "dark",
+      "filename": "Cosmic Latte Dark",
+      "mime": "text/plain",
+      "id": "download-ghostty-dark",
+      "href": "downloads/Cosmic%20Latte%20Dark"
+    },
+    {
+      "app": "iTerm2",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.itermcolors",
+      "mime": "application/xml",
+      "id": "download-iterm2-dark",
+      "href": "downloads/cosmic-latte-dark.itermcolors"
+    },
+    {
+      "app": "Sublime Text",
+      "mode": "dark",
+      "filename": "Cosmic Latte Dark.sublime-color-scheme",
+      "mime": "application/json",
+      "id": "download-sublime-text-dark",
+      "href": "downloads/Cosmic%20Latte%20Dark.sublime-color-scheme"
+    },
+    {
+      "app": "VS Code settings",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.vscode-settings.json",
+      "mime": "application/json",
+      "id": "download-vs-code-settings-dark",
+      "href": "downloads/cosmic-latte-dark.vscode-settings.json"
+    },
+    {
+      "app": "Slack",
+      "mode": "dark",
+      "filename": "cosmic-latte-dark.slack.txt",
+      "mime": "text/plain",
+      "id": "download-slack-dark",
+      "href": "downloads/cosmic-latte-dark.slack.txt"
+    }
+  ]
+}
+</script>
+<script>
+
+var paletteData=JSON.parse(document.getElementById('palette-data').textContent);
+var P=paletteData,D=paletteData.terminal;
+var mode=(function(){try{var d=document.documentElement.dataset.theme;if(d==='dark'||d==='light')return d}catch(e){}return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'})();
+function rgb(h){h=h.replace('#','');return[0,2,4].map(function(i){return parseInt(h.substr(i,2),16)})}
+function hsl(h){var c=rgb(h).map(function(v){return v/255}),mx=Math.max.apply(0,c),mn=Math.min.apply(0,c),l=(mx+mn)/2,s=0,H=0,d=mx-mn;
+ if(d){s=d/(1-Math.abs(2*l-1));if(mx===c[0])H=((c[1]-c[2])/d)%6;else if(mx===c[1])H=(c[2]-c[0])/d+2;else H=(c[0]-c[1])/d+4;H*=60;if(H<0)H+=360}
+ return Math.round(H)+', '+Math.round(s*100)+'%, '+Math.round(l*100)+'%'}
+function lum(h){var c=rgb(h).map(function(v){v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function cr(a,b){var x=lum(a),y=lum(b);if(x<y){var t=x;x=y;y=t}return(x+.05)/(y+.05)}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function announce(message){
+ var status=document.getElementById('status');
+ status.textContent=message;status.classList.add('visible');
+ clearTimeout(announce.timer);announce.timer=setTimeout(function(){status.classList.remove('visible')},2400);
+}
+function copyBtn(label,val,show){
+ var b=el('button','copy','<span></span><i aria-hidden="true">'+label+'</i>');
+ b.firstChild.textContent=show||val;b.type='button';
+ b.setAttribute('aria-label','Copy '+label+': '+val);
+ b.addEventListener('click',function(){
+  function ok(){
+   b.classList.add('done');b.lastChild.textContent='copied';announce('Copied to clipboard');
+   setTimeout(function(){b.classList.remove('done');b.lastChild.textContent=label},1400);
+  }
+  function fallback(){
+   var field=el('textarea');field.value=val;field.style.cssText='position:fixed;left:-9999px;top:0';
+   document.body.appendChild(field);field.select();var copied=false;
+   try{copied=document.execCommand('copy')}catch(e){}
+   field.remove();b.focus();
+   if(copied)ok();else{
+    var range=document.createRange();range.selectNodeContents(b.firstChild);
+    var selection=getSelection();selection.removeAllRanges();selection.addRange(range);
+    announce('Copy unavailable. The value is selected for manual copy.');
+   }
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(val).then(ok,fallback);
+  else fallback();
+ });return b;
+}
+var ACC=['supernova','pink','solar','aurora','ion','nebula'],SURF=P.order.filter(function(k){return ACC.indexOf(k)<0});
+function card(k,t){
+ var h=t.hex,r=rgb(h),sw=el('div','sw'),ch=el('div','chip');ch.style.background=h;
+ sw.appendChild(ch);sw.appendChild(el('div','meta','<b>'+t.name+'</b><span>'+t.role+'</span>'));
+ var v=el('div','vals');v.appendChild(copyBtn('hex',h));v.appendChild(copyBtn('rgb','rgb('+r.join(', ')+')',r.join(', ')));v.appendChild(copyBtn('hsl','hsl('+hsl(h)+')',hsl(h)));sw.appendChild(v);return sw;
+}
+function surfaceRow(k,t){
+ var row=el('tr'),name=el('th'),preview=el('span','preview');name.scope='row';
+ preview.style.background=t.hex;name.appendChild(preview);name.appendChild(document.createTextNode(t.name));row.appendChild(name);
+ var role=el('td','role');role.textContent=t.role;row.appendChild(role);
+ [['hex',t.hex],['rgb','rgb('+rgb(t.hex).join(', ')+')',rgb(t.hex).join(', ')],['hsl','hsl('+hsl(t.hex)+')',hsl(t.hex)]].forEach(function(value){var cell=el('td');cell.appendChild(copyBtn.apply(null,value));row.appendChild(cell)});
+ return row;
+}
+function render(){
+ var M=P.modes[mode],T=M.tokens,d=D[mode];
+ document.documentElement.setAttribute('data-theme',mode);
+ document.getElementById('bl').setAttribute('aria-pressed',mode==='light');document.getElementById('bd').setAttribute('aria-pressed',mode==='dark');
+ document.getElementById('s1').textContent=mode==='light'?'Cosmic Latte sits at the center. Light surfaces step down toward Moondust.':'Deep indigo ground with Cosmic Latte as the text color.';
+ var g1=document.getElementById('g1'),g2=document.getElementById('g2');g1.innerHTML='';g2.innerHTML='';
+ SURF.forEach(function(k){g1.appendChild(surfaceRow(k,T[k]))});ACC.forEach(function(k){g2.appendChild(card(k,T[k]))});
+ document.getElementById('spectrum').innerHTML=ACC.map(function(k){return '<span style="background:'+T[k].hex+'"></span>'}).join('');
+ var an=document.getElementById('ansi');an.innerHTML='';d.ansi.forEach(function(c,i){var x=el('div','ansi-slot'),chip=el('span');chip.style.background=c;x.appendChild(chip);x.appendChild(el('small',null,String(i)));x.title='ANSI '+i+': '+c;an.appendChild(x)});
+ var t=document.getElementById('term');t.style.setProperty('--terminal-bg',T.panel.hex);
+ var c=document.getElementById('code');c.style.setProperty('--g',T.aurora.hex);c.style.setProperty('--r',T.supernova.hex);c.style.setProperty('--b',T.ion.hex);c.style.setProperty('--y',T.solar.hex);c.style.setProperty('--p',T.pink.hex);
+ c.innerHTML='<span class="c"># resolve a launch window</span>\n<span class="p">@cache</span>\n<span class="k">def</span> <span class="f">window</span>(body, <span class="t">days</span>=<span class="n">14</span>):\n    <span class="k">if</span> body <span class="k">not in</span> ORBITS:\n        <span class="k">raise</span> <span class="t">KeyError</span>(<span class="s">"unknown body"</span>)\n    <span class="k">return</span> ORBITS[body].<span class="f">next</span>(days)';
+ var ct=document.getElementById('ct');ct.innerHTML='';
+ ['text','subtle','muted'].concat(ACC).forEach(function(k){var h=T[k].hex,tr=el('tr');
+  var cells=[T.base.hex,T.panel.hex,T.halo.hex].map(function(b){var r=cr(h,b);return '<td class="'+(r>=4.5?'pass':'low')+'">'+r.toFixed(2)+(r>=7?' AAA':r>=4.5?' AA':r>=3?' large':' below AA')+'</td>'}).join('');
+  tr.innerHTML='<td><span class="dot" style="background:'+h+'"></span>'+T[k].name+' <span class="note">'+h+'</span></td>'+cells;ct.appendChild(tr)});
+ var I=document.getElementById('inst');I.innerHTML='';
+ function ic(title,desc,pre){var c=el('div','card','<h3>'+title+'</h3><p>'+desc+'</p>');var p=el('pre');p.textContent=pre;c.appendChild(p);var b=copyBtn('copy',pre,'Copy snippet');b.style.border='1px solid var(--line)';b.style.borderRadius='8px';c.appendChild(b);I.appendChild(c)}
+ ic('Light','Warm cream background with indigo text and a violet accent.','Accent      '+P.modes.light.tokens.nebula.hex+'\nBackground  '+P.modes.light.tokens.base.hex+'\nForeground  '+P.modes.light.tokens.text.hex);
+ ic('Dark','Deep indigo background with warm text and a lavender accent.','Accent      '+P.modes.dark.tokens.nebula.hex+'\nBackground  '+P.modes.dark.tokens.base.hex+'\nForeground  '+P.modes.dark.tokens.text.hex);
+}
+document.getElementById('bl').addEventListener('click',function(){mode='light';render()});
+document.getElementById('bd').addEventListener('click',function(){mode='dark';render()});
+render();
+document.getElementById('slack-copy').appendChild(copyBtn('copy',"#1E1D31,#171627,#A899F7,#1E1D31,#38345E,#F4ECD9,#56CB96,#F87986,#171627,#F4ECD9",'Copy theme'));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* Cosmic Latte: system default, or data-theme="light" / "dark". */
+:root {
+  --ct-base: #FFF8E7;
+  --ct-surface: #FFFCF2;
+  --ct-panel: #F5EAD2;
+  --ct-halo: #EADFEA;
+  --ct-border: #E3D6BD;
+  --ct-text: #2F3249;
+  --ct-subtle: #4F5470;
+  --ct-muted: #5F637E;
+  --ct-supernova: #A0233D;
+  --ct-pink: #BF4484;
+  --ct-solar: #B07500;
+  --ct-aurora: #0D8344;
+  --ct-ion: #0B73AC;
+  --ct-nebula: #5546A8;
+  --ct-supernova-soft: #F2DACF;
+  --ct-pink-soft: #F6DFD9;
+  --ct-solar-soft: #F4E6C7;
+  --ct-aurora-soft: #DDE8D0;
+  --ct-ion-soft: #DDE5DF;
+  --ct-nebula-soft: #E7DFDE;
+  --ct-cyan: #0C7B78;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ct-base: #1E1D31;
+    --ct-surface: #272641;
+    --ct-panel: #171627;
+    --ct-halo: #38345E;
+    --ct-border: #3B3A59;
+    --ct-text: #F4ECD9;
+    --ct-subtle: #C8C2D6;
+    --ct-muted: #9E99B8;
+    --ct-supernova: #F87986;
+    --ct-pink: #F7A0DB;
+    --ct-solar: #EFC053;
+    --ct-aurora: #56CB96;
+    --ct-ion: #5DB1FA;
+    --ct-nebula: #A899F7;
+    --ct-supernova-soft: #4A2F42;
+    --ct-pink-soft: #493753;
+    --ct-solar-soft: #483E38;
+    --ct-aurora-soft: #294045;
+    --ct-ion-soft: #2B3B59;
+    --ct-nebula-soft: #3A3659;
+    --ct-cyan: #5ABEC8;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ct-base: #1E1D31;
+  --ct-surface: #272641;
+  --ct-panel: #171627;
+  --ct-halo: #38345E;
+  --ct-border: #3B3A59;
+  --ct-text: #F4ECD9;
+  --ct-subtle: #C8C2D6;
+  --ct-muted: #9E99B8;
+  --ct-supernova: #F87986;
+  --ct-pink: #F7A0DB;
+  --ct-solar: #EFC053;
+  --ct-aurora: #56CB96;
+  --ct-ion: #5DB1FA;
+  --ct-nebula: #A899F7;
+  --ct-supernova-soft: #4A2F42;
+  --ct-pink-soft: #493753;
+  --ct-solar-soft: #483E38;
+  --ct-aurora-soft: #294045;
+  --ct-ion-soft: #2B3B59;
+  --ct-nebula-soft: #3A3659;
+  --ct-cyan: #5ABEC8;
+}
